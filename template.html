@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <!-- highlighting is now handled server-side using pigments
+        <script src="../../js/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        -->
+    </head>
+    <body>
+        <table border="1">
+            <tr>
+                <th> CoreID </th>
+                <th> Major  </th>
+                <th> Minor  </th>
+                <th> Bat %  </th>
+            </tr>
+            {% for coreid, bt in btlist.items() %}
+            <tr>
+                <td> {{ coreid }} </td> 
+                <td> {{ bt.major }} </td>
+                <td> {{ bt.minor }} </td>
+                <td> {{ bt.bat }} </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

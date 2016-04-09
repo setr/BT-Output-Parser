@@ -3,7 +3,10 @@ import json
 import requests
 import re
 from collections import defaultdict
+from jinja2 import Environment, FileSystemLoader
 
+env = Environment(loader=FileSystemLoader('.'))
+template = env.get_template('template.html')
 def btinit():
     return bt()
 class bt:
@@ -24,6 +27,7 @@ def parse(eventline, dataline):
         btdict[coreid].bat = bat
         print eventline
         print dataline
+        print
 
     elif "System Going to Sleep" in eventline:
         print "SLEEP"
@@ -40,6 +44,12 @@ def parse(eventline, dataline):
         btdict[coreid].minor = minor 
         print 'MAJOR:', major
         print 'MINOR:', minor
+        print
+
+def makehtml():
+    with open("bat.html", "wb") as f:
+        f.write(template.render(btlist=btdict))
+
 
 def readparticle(s):
     #r = requests.get('https://api.particle.io/v1/devices/events?access_token=9b3de52ac7981f0af0fa0972b1a6a130ba747aa8', stream=True)
@@ -50,12 +60,7 @@ def readparticle(s):
             eventline = line
             dataline = next(r.iter_lines())
             parse(eventline, dataline)
-
-            for coreid, bt in btdict.items():
-                print "coreid", coreid
-                print "major:", bt.major
-                print "minor:", bt.minor
-                print "bat:" , bt.bat
+            makehtml()
     print 'ending read'
 
 def filetest():
@@ -66,8 +71,7 @@ def filetest():
                 eventline = line
                 dataline = next(f)
                 parse(eventline, dataline)
-
-
+            makehtml()
 
 btdict = defaultdict(bt)
 stream = 'https://api.particle.io/v1/devices/events?access_token=9b3de52ac7981f0af0fa0972b1a6a130ba747aa8'
