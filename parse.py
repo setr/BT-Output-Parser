@@ -5,6 +5,9 @@ import re
 from collections import defaultdict
 from jinja2 import Environment, FileSystemLoader
 
+import pytz
+import dateutil.parser
+
 env = Environment(loader=FileSystemLoader('.'))
 template = env.get_template('template.html')
 def btinit():
@@ -14,8 +17,15 @@ class bt:
         self.bat = 0
         self.major = 0
         self.minor = 0
+        self.published = "" 
+        
 
 def parse(eventline, dataline):
+    def converttime(time):
+        timestamp = dateutil.parser.parse(time)
+        timezoned = timestamp.astimezone(tz=pytz.timezone('America/Chicago'))
+        return timezoned.isoformat()
+
     if "Battery Status" in eventline:
         print "BT STATUS"
         kosher = dataline[6:]
@@ -25,6 +35,8 @@ def parse(eventline, dataline):
         bat = int(re.match('(\d+)', bat).group(1))
         coreid = data['coreid']
         btdict[coreid].bat = bat
+        btdict[coreid].published = converttime(data['published_at'])
+
         print eventline
         print dataline
         print
@@ -39,9 +51,13 @@ def parse(eventline, dataline):
         major = int(stuff[1])
         minor = int(stuff[3])
         coreid = data['coreid']
+        btdict[coreid].published = converttime(data['published_at'])
 
         btdict[coreid].major = major 
         btdict[coreid].minor = minor 
+
+
+
         print 'MAJOR:', major
         print 'MINOR:', minor
         print

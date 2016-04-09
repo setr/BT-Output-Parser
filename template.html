@@ -13,6 +13,7 @@
                 <th> Major  </th>
                 <th> Minor  </th>
                 <th> Bat %  </th>
+                <th> Last Update </th>
             </tr>
             {% for coreid, bt in btlist.items() %}
             <tr>
@@ -20,6 +21,7 @@
                 <td> {{ bt.major }} </td>
                 <td> {{ bt.minor }} </td>
                 <td> {{ bt.bat }} </td>
+                <td> {{ bt.published }} </td>
             </tr>
             {% endfor %}
         </table>
