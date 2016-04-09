@@ -10,15 +10,13 @@ import dateutil.parser
 
 env = Environment(loader=FileSystemLoader('.'))
 template = env.get_template('template.html')
-def btinit():
-    return bt()
+
 class bt:
     def __init__(self):
         self.bat = 0
         self.major = 0
         self.minor = 0
         self.published = "" 
-        
 
 def parse(eventline, dataline):
     def converttime(time):
@@ -27,7 +25,6 @@ def parse(eventline, dataline):
         return timezoned.isoformat()
 
     if "Battery Status" in eventline:
-        print "BT STATUS"
         kosher = dataline[6:]
         data = json.loads(kosher)
 
@@ -37,13 +34,7 @@ def parse(eventline, dataline):
         btdict[coreid].bat = bat
         btdict[coreid].published = converttime(data['published_at'])
 
-        print eventline
-        print dataline
-        print
-
     elif "System Going to Sleep" in eventline:
-        print "SLEEP"
-        print eventline
         kosher = dataline[6:]
         data = json.loads(kosher)
 
@@ -55,12 +46,6 @@ def parse(eventline, dataline):
 
         btdict[coreid].major = major 
         btdict[coreid].minor = minor 
-
-
-
-        print 'MAJOR:', major
-        print 'MINOR:', minor
-        print
 
 def makehtml():
     with open("bat.html", "wb") as f:
@@ -91,6 +76,6 @@ def filetest():
 
 btdict = defaultdict(bt)
 stream = 'https://api.particle.io/v1/devices/events?access_token=9b3de52ac7981f0af0fa0972b1a6a130ba747aa8'
-filetest()
+#filetest()
 readparticle(stream)
 
