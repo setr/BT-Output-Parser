@@ -1,0 +1,86 @@
+event: spark/status
+data: {"data":"online","ttl":"60","published_at":"2016-04-09T21:30:36.269Z","coreid":"3e0022000847343337373738"}
+--
+event: newUUID
+data: {"data":"A0DF207C-142F-4A39-A457-6FC44D524C04","ttl":"60","published_at":"2016-04-09T21:30:36.354Z","coreid":"3e0022000847343337373738"}
+--
+event: BT Response
+data: {"data":"null","ttl":"60","published_at":"2016-04-09T21:30:37.352Z","coreid":"3e0022000847343337373738"}
+--
+event: ifttt-trigger-event-check
+data: {"data":"{\"count\":14}","ttl":"60","published_at":"2016-04-09T21:30:39.324Z","coreid":"3a002c000f47343432313031"}
+--
+event: BT Response
+data: {"data":"OK+RENEW","ttl":"60","published_at":"2016-04-09T21:30:39.420Z","coreid":"3e0022000847343337373738"}
+--
+event: BT Response
+data: {"data":"OK+RESET","ttl":"60","published_at":"2016-04-09T21:30:41.352Z","coreid":"3e0022000847343337373738"}
+--
+event: BT Response
+data: {"data":"OK+Set:0xA0DF207C","ttl":"60","published_at":"2016-04-09T21:30:43.354Z","coreid":"3e0022000847343337373738"}
+--
+event: BT Response
+data: {"data":"OK+Set:0x142F4A39","ttl":"60","published_at":"2016-04-09T21:30:45.357Z","coreid":"3e0022000847343337373738"}
+--
+event: BT Response
+data: {"data":"OK+Set:0xA4576FC4","ttl":"60","published_at":"2016-04-09T21:30:47.360Z","coreid":"3e0022000847343337373738"}
+--
+event: BT Response
+data: {"data":"OK+Set:0x4D524C04","ttl":"60","published_at":"2016-04-09T21:30:49.457Z","coreid":"3e0022000847343337373738"}
+--
+event: BT Response
+data: {"data":"OK+Set:1","ttl":"60","published_at":"2016-04-09T21:30:51.364Z","coreid":"3e0022000847343337373738"}
+--
+event: BT Response
+data: {"data":"OK+Set:0x0064","ttl":"60","published_at":"2016-04-09T21:30:53.366Z","coreid":"3e0022000847343337373738"}
+--
+event: BT Response
+data: {"data":"OK+Set:0x0004","ttl":"60","published_at":"2016-04-09T21:30:55.368Z","coreid":"3e0022000847343337373738"}
+--
+event: BT Response
+data: {"data":"OK+Set:5","ttl":"60","published_at":"2016-04-09T21:30:57.370Z","coreid":"3e0022000847343337373738"}
+--
+event: BT Response
+data: {"data":"OK+Set:0x0004","ttl":"60","published_at":"2016-04-09T21:30:59.371Z","coreid":"3e0022000847343337373738"}
+--
+event: BT Response
+data: {"data":"OK+DELO2","ttl":"60","published_at":"2016-04-09T21:31:01.373Z","coreid":"3e0022000847343337373738"}
+--
+event: BT Response
+data: {"data":"OK+Set:1","ttl":"60","published_at":"2016-04-09T21:31:03.376Z","coreid":"3e0022000847343337373738"}
+--
+event: Battery Status
+data: {"data":"69%","ttl":"60","published_at":"2016-04-09T21:31:04.376Z","coreid":"3e0022000847343337373738"}
+--
+event: System Going to Sleep
+data: {"data":"MAJOR-100-MINOR-04","ttl":"60","published_at":"2016-04-09T21:31:05.378Z","coreid":"3e0022000847343337373738"}
+--
+event: ifttt-trigger-event-check
+data: {"data":"{\"count\":35}","ttl":"60","published_at":"2016-04-09T21:31:13.868Z","coreid":"3e0022000847343337373738"}
+--
+event: ifttt-trigger-event-check
+data: {"data":"{\"count\":1}","ttl":"60","published_at":"2016-04-09T21:31:29.709Z","coreid":"3a002c000f47343432313031"}
+--
+event: ifttt-trigger-event-check
+data: {"data":"{\"count\":14}","ttl":"60","published_at":"2016-04-09T21:31:36.406Z","coreid":"3a002c000f47343432313031"}
+--
+event: ifttt-trigger-event-check
+data: {"data":"{\"count\":1}","ttl":"60","published_at":"2016-04-09T21:31:57.242Z","coreid":"3a002c000f47343432313031"}
+--
+event: spark/status
+data: {"data":"offline","ttl":"60","published_at":"2016-04-09T21:32:06.379Z","coreid":"3e0022000847343337373738"}
+--
+event: spark/status
+data: {"data":"online","ttl":"60","published_at":"2016-04-09T21:32:42.567Z","coreid":"3e0022000847343337373738"}
+--
+event: newUUID
+data: {"data":"A0DF207C-142F-4A39-A457-6FC44D524C04","ttl":"60","published_at":"2016-04-09T21:32:42.646Z","coreid":"3e0022000847343337373738"}
+--
+event: BT Response
+data: {"data":"null","ttl":"60","published_at":"2016-04-09T21:32:43.652Z","coreid":"3e0022000847343337373738"}
+--
+event: BT Response
+data: {"data":"OK+RENEW","ttl":"60","published_at":"2016-04-09T21:32:45.652Z","coreid":"3e0022000847343337373738"}
+--
+event: BT Response
+data: {"data":"OK+RESET","ttl":"60",
