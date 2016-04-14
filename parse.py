@@ -2,7 +2,9 @@
 import json
 import requests
 import re
+import os
 from collections import defaultdict
+import pickle
 
 # for templating
 from jinja2 import Environment, FileSystemLoader
@@ -20,6 +22,8 @@ from email.mime.text import MIMEText
 
 env = Environment(loader=FileSystemLoader('.'))
 template = env.get_template('template.html')
+picklenum = 0
+picklepath = "p_objs/"
 
 class bt:
     def __init__(self):
@@ -60,6 +64,12 @@ def converttime(time):
 def makehtml():
     with open("bat.html", "wb") as f:
         f.write(template.render(btlist=btdict))
+    # save a copy of the dict as well
+    global picklenum
+    picklenum += 1 # constantly increment..
+    picklefile = picklepath + str(picklenum) + '.p'
+    pickle.dump( btdict, open( picklefile, "wb" ) )
+
 def checkbat():
     for coreid, bt in btdict.items():
         # if it's actually a complete object
@@ -130,7 +140,17 @@ def filetest():
                 checkbat()
 
 btdict = defaultdict(bt)
+# if there's a dict saved, load and use that instead
+if os.path.exists(picklepath):
+    objs = os.listdir(picklepath)
+    if objs:
+        objs = [re.match('(\d+)\..*', filename).group(1) for filename in objs] 
+        picklenum = sorted(map(int, objs), reverse=True)[0]
+
+        picklefile = picklepath + str(picklenum) + '.p'
+        btdict = pickle.load( open( picklefile, "rb" ) )
+
 stream = 'https://api.particle.io/v1/devices/events?access_token=9b3de52ac7981f0af0fa0972b1a6a130ba747aa8'
-filetest()
+#filetest()
 readparticle(stream)
 
