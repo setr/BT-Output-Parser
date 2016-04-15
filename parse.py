@@ -64,6 +64,7 @@ def converttime(time):
 def makehtml():
     with open("bat.html", "wb") as f:
         f.write(template.render(btlist=btdict))
+
     # save a copy of the dict as well
     global picklenum
     picklenum += 1 # constantly increment..
@@ -139,18 +140,23 @@ def filetest():
                 makehtml()
                 checkbat()
 
-btdict = defaultdict(bt)
-# if there's a dict saved, load and use that instead
-if os.path.exists(picklepath):
-    objs = os.listdir(picklepath)
-    if objs:
-        objs = [re.match('(\d+)\..*', filename).group(1) for filename in objs] 
-        picklenum = sorted(map(int, objs), reverse=True)[0]
+btdict = None
+if not os.path.exists(picklepath):
+    os.makedirs(picklepath)
 
-        picklefile = picklepath + str(picklenum) + '.p'
-        btdict = pickle.load( open( picklefile, "rb" ) )
+# if there's a dict saved, load and use that instead
+objs = os.listdir(picklepath)
+if objs:
+    objs = [re.match('(\d+)\..*', filename).group(1) for filename in objs] 
+    picklenum = sorted(map(int, objs), reverse=True)[0]
+
+    picklefile = picklepath + str(picklenum) + '.p'
+    btdict = pickle.load( open( picklefile, "rb" ) )
+else:
+    btdict = defaultdict(bt)
+
 
 stream = 'https://api.particle.io/v1/devices/events?access_token=9b3de52ac7981f0af0fa0972b1a6a130ba747aa8'
-#filetest()
+filetest()
 readparticle(stream)
 
