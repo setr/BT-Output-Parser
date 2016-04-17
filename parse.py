@@ -65,7 +65,8 @@ def makehtml():
     with open("bat.html", "wb") as f:
         f.write(template.render(btlist=btdict))
 
-    # save a copy of the dict as well
+def savedict():
+    # pickle the btdict 
     global picklenum
     picklenum += 1 # constantly increment..
     picklefile = picklepath + str(picklenum) + '.p'
@@ -129,16 +130,18 @@ def readparticle(s):
             checkbat()
     print 'ending read'
 
-def filetest():
+def readfile(filename):
     # makes sure parsing works on 
-    with open('tmp.txt') as f:
+    with open(filename) as f:
         for line in f:
             if line and "event" in line and ("Battery" in line or "Sleep" in line):
                 eventline = line
                 dataline = next(f)
                 parse(eventline, dataline)
-                makehtml()
-                checkbat()
+    checkbat() # send an email if any bt is under 25% bat, or hasn't been responding
+    makehtml() # generate an html table to display bluetooth objects
+    savedict() # save the dict to p_objs
+
 
 btdict = None
 if not os.path.exists(picklepath):
@@ -155,8 +158,15 @@ if objs:
 else:
     btdict = defaultdict(bt)
 
+# to read directly from stream
+#stream = 'https://api.particle.io/v1/devices/events?access_token=9b3de52ac7981f0af0fa0972b1a6a130ba747aa8'
+#readparticle(stream)
 
-stream = 'https://api.particle.io/v1/devices/events?access_token=9b3de52ac7981f0af0fa0972b1a6a130ba747aa8'
-filetest()
-readparticle(stream)
+# new plan ... curl reads the stream constantly into a file
+# python gets executed once a day to read the file
+filename = 'tmp.txt'
+if os.path.isfile(filename):
+    readfile(filename)
+else:
+    raise Exception('%s is missing, most likely the curl stream died')
 
