@@ -141,6 +141,7 @@ def readfile(filename):
     checkbat() # send an email if any bt is under 25% bat, or hasn't been responding
     makehtml() # generate an html table to display bluetooth objects
     savedict() # save the dict to p_objs
+    os.remove(filename)
 
 
 btdict = None
