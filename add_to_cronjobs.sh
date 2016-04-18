@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-echo "* 12 * * * root `dirname $0`/wrapper.sh " >> /etc/crontab 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+echo "* 12 * * * root $DIR/wrapper.sh " >> /etc/crontab 
